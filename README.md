@@ -28,10 +28,10 @@ I ran the code on Windows 10 with Anaconda 3.
   tqdm
   keras
   tensorflow-gpu
-6.  Open a terminal and run: jupyter notebook dog_app.ipynb
-7.  To run the web app run:  python -m flask run
+6.  Open a terminal and run: "jupyter notebook dog_app.ipynb"
+7.  To run the web app run:  "python -m flask run".  In the web application Browse to an image and Submit it.  The following screenshot is an example of a dog classification.
 
-
+![Alt text](Screenshot1.PNG?raw=true)
 ## Project Motivation<a name="motivation"></a>
 
 For this project, I was wanted to predict a dog breed based on an image.
