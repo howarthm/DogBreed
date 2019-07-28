@@ -28,7 +28,7 @@ I ran the code on Windows 10 with Anaconda 3.
   tqdm
   keras
   tensorflow-gpu
-6.  Open a terminal and run: "jupyter notebook dog_app.ipynb"
+6.  Open a terminal and run: "jupyter notebook dog_app.ipynb".  Run the notebook before step 7, so you have the algorithm and weights saved for the application.
 7.  To run the web app run:  "python -m flask run".  In the web application Browse to an image and Submit it.  The following screenshot is an example of a dog classification.
 
 ![Alt text](Screenshot1.PNG?raw=true)
