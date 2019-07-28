@@ -27,12 +27,17 @@ class dog_classifier:
 
     # returns "True" if face is detected in image stored at img_path
     def face_detector(self, img_path):
+        """Detect if the picture is a human face.  Takes an image path as its argument.
+        Returns True is a face is detected.
+        """
         img = cv2.imread(img_path)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = self.face_cascade.detectMultiScale(gray)
         return len(faces) > 0
 
     def path_to_tensor(self, img_path):
+        """Returns tensor of image
+        """
         # loads RGB image as PIL.Image.Image type
         img = image.load_img(img_path, target_size=(224, 224))
         # convert PIL.Image.Image type to 3D tensor with shape (224, 224, 3)
@@ -41,18 +46,22 @@ class dog_classifier:
         return np.expand_dims(x, axis=0)
 
     def ResNet50_predict_labels(self, img_path):
-        # returns prediction vector for image located at img_path
+        """returns prediction vector for image located at img_path
+        """
         img = preprocess_input(self.path_to_tensor(img_path))
         return np.argmax(self.ResNet50_model.predict(img))
 
-    ### returns "True" if a dog is detected in the image stored at img_path
     def dog_detector(self, img_path):
+        """Return True is a dog is detected in the image
+        """
         prediction = self.ResNet50_predict_labels(img_path)
         return ((prediction <= 268) & (prediction >= 151)) 
 
     # Thanks to this answer which helped me with the latest version of keras 
     # https://stackoverflow.com/questions/51231576/tensorflow-keras-expected-global-average-pooling2d-1-input-to-have-shape-1-1
     def Resnet50_predict_breed(self, img_path):
+        """Returns predicted breed from img_path
+        """
         # extract bottleneck features
         bottleneck_feature = extract_Resnet50(self.path_to_tensor(img_path))
         bottleneck_feature = np.expand_dims(bottleneck_feature, axis=0)
@@ -63,9 +72,13 @@ class dog_classifier:
         return self.dog_names[np.argmax(predicted_vector)]
 
     def dog_name(self, dog_name_path):
+        """Returns a clean version of the dog name
+        """
         return dog_name_path.split('.')[-1].replace('_', ' ')
     
     def classify_dog_breed(self, image_path):
+        """Returns text specifying the breed or an error if the picture is not a dog or human.
+        """
         if self.dog_detector(image_path):
             return 'This is a dog, and this photo looks like a '+self.dog_name(self.Resnet50_predict_breed(image_path))
         elif self.face_detector(image_path):

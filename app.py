@@ -15,7 +15,9 @@ def index():
 
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
+    """Upload image to application and get a dog breed prediction
+    """
+    if request.method == 'POST':
         f = request.files['file']
         temp = secure_filename(f.filename)
         f.save('./static/'+temp)
