@@ -1,12 +1,8 @@
-import json
-import pandas as pd
-import numpy as np
-import os
+#import json
 from werkzeug import secure_filename
 
 from flask import Flask
-from flask import render_template, request, jsonify
-from sklearn.externals import joblib
+from flask import render_template, request
 from dog_app import dog_classifier
 
 app = Flask(__name__)

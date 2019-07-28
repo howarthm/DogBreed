@@ -15,7 +15,7 @@ import cv2
 class dog_classifier:
     def __init__(self, algorithm_path, weight_path):
         # load list of dog names
-        self.dog_names = [item[20:-1] for item in sorted(glob("data/dog_images/train/*/"))]
+        self.dog_names = [item[20:-1] for item in sorted(glob("data/dogImages/train/*/"))]
         # load model from saved values from notebook
         with open(algorithm_path, 'r') as f:#with open('saved_models/resnet50.json', 'r') as f:
             self.model = model_from_json(f.read())
@@ -75,8 +75,8 @@ class dog_classifier:
         
 #classifier = dog_classifier('saved_models/resnet50.json','saved_models/weights.best.Resnet50.hdf5')
 
-# If Garth were a dog, what would he be?
-#print(classifier.classify_dog_breed('images/sample_human_2.png'))
+# If Tom Selleck were a dog, what would he be?
+#print(classifier.classify_dog_breed('images/tomselleck.jpg'))
 
 
 
